@@ -1,41 +1,43 @@
-# Template
+# API-Projet-IA
 
-This project includes a simple FastAPI application that manages users and chat conversations backed by a PostgreSQL database.
+API FastAPI pour gérer le traitement des intéractions utilisateurs avec notre chatbot dans le cadre d'un projet de quatrième année.
 
-## Running the application
+## Lancer l'API
 
-Install the dependencies:
+Installer les dépendances Python :
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Start the API with `uvicorn`:
+Lancer l'API avec `uvicorn`:
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --ssl-keyfile=./Certifs_Projet4A/server.key --ssl-certfile=./Certifs_Projet4A/server.crt
 ```
 
 ou
 
 ```bash
-python -m uvicorn app.main:app --reload
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --ssl-keyfile=./Certifs_Projet4A/server.key --ssl-certfile=./Certifs_Projet4A/server.crt
 ```
 
-The API now exposes the following endpoints:
+L'API expose les points de terminaisons suivants :
 
-- `POST /register` - Create a new user with `email` and `password`. The password is hashed before storing.
-- `POST /login` - Authenticate with `email` and `password` and receive a token.
-- `GET /conversations` - List conversations for the authenticated user (`Authorization: Bearer <token>`).
-- `GET /chat/{id}` - Retrieve all messages for a conversation.
-- `POST /send` - Send a message to a conversation or start a new one.
-- `POST /delete_conversations/{id}` - Delete a conversation based on its id.
+- `POST /register` - Crée un nouvel utilisateur avec son `email` et son `mot de passe` et envoie un lien de vérification à l'utilisateur. Le mot de passe est hashé avant tout stockage dans la base de données.
+- `POST /verify-email` - Vérification d'un utilisateur lorsque celui-ci à cliqué sur le lien envoyé par e-mail suite à son inscription.
+- `POST /login` - Authentification avec l'`email` et le `mot de passe` pour recevoir un token d'authentification.
+- `POST /logout` - Gère la déconnexion d'un utilisateur de notre application.
+- `GET /conversations` - Liste les conversations pour l'utilisateur connecté (`Authorization: Bearer <token>`).
+- `GET /chat/{id}` - Récupère tous les messages d'une conversation appartenant à l'utilisateur connecté (`Authorization: Bearer <token>`).
+- `POST /send` - Envoie un message dans une conversation ou en commence une nouvelle pour l'utilisateur connecté (`Authorization: Bearer <token>`).
+- `POST /delete_conversations/{id}` - Efface une conversation d'un utilisateur si celle-ci lui appartient à partir de l'identifiant de la conversation (`Authorization: Bearer <token>`).
 
-Make sure the database configuration is provided through environment variables.
+Assurez-vous que la configuration de la base de données est fournie par des variables d'environnement.
 
-## Environment variables
+## Variables d'environnement
 
-Set the following variables before starting the application:
+Définissez les variables suivantes avant de lancer l'application :
 - `DB_NAME`
 - `DB_USER`
 - `DB_PASSWORD`
@@ -43,4 +45,4 @@ Set the following variables before starting the application:
 - `SECRET_KEY`
 - `SERPER_API_KEY`
 
-You may also define `DATABASE_URL` to override the database connection string.
+Vous pouvez également définir `DATABASE_URL` pour remplacer la construction de l'URL de connexion à la base de données.
