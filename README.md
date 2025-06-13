@@ -25,12 +25,12 @@ Définissez les variables suivantes avant de lancer l'application :
 
 Vous pouvez également définir `DATABASE_URL` pour remplacer la construction de l'URL de connexion à la base de données.
 
-## Création de la base de données et enrichissement du RAG
+## Création de la base de données et enrichissement des données l'IA
 
 Pour la mise en place de la base de données, veuillez exécuter le script suivant sur votre base de données PostgreSQL : 
 _[https://github.com/Not-Yukii/API-Projet-IA/blob/main/database.sql](url)_
 
-Pour enrichir le contexte global de l'IA avec les données situées dans le répertoire [https://github.com/Not-Yukii/API-Projet-IA/tree/main/data](url) placez vous à la racine de ce projet et exécutez la commande suivante :
+Pour enrichir les données de l'IA avec les données situées dans le répertoire [https://github.com/Not-Yukii/API-Projet-IA/tree/main/data](url) placez vous à la racine de ce projet et exécutez la commande suivante :
 
 ```py 
 ./app/recherche_local.py --ingest
