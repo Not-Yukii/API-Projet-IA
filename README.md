@@ -13,8 +13,6 @@ L'API expose les points de terminaisons suivants :
 - `POST /send` - Envoie un message dans une conversation ou en commence une nouvelle pour l'utilisateur connecté (`Authorization: Bearer <token>`).
 - `POST /delete_conversations/{id}` - Efface une conversation d'un utilisateur si celle-ci lui appartient à partir de l'identifiant de la conversation (`Authorization: Bearer <token>`).
 
-Assurez-vous que la configuration de la base de données est fournie par des variables d'environnement.
-
 ## Variables d'environnement
 
 Définissez les variables suivantes avant de lancer l'application :
